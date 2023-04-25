@@ -1,12 +1,17 @@
 #include <Arduino.h>
-#include <LiquidCrystal.h>
-
-LiquidCrystal lcd(12, 11, 10, 5, 4, 3, 2);
 
 void setup()
 {
-  lcd.begin(16,1);
-  lcd.print("hello, world!");
+  DDRB |= (1 << DDB6);
 }
 
-void loop() {}
+void loop()
+{
+  // set PB6 high
+  PORTB |= (1 << PORTB6);
+  delay(100);
+
+  // set PB6 low
+  PORTB &= ~(1 << PORTB6);
+  delay(100);
+}

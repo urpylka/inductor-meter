@@ -1,7 +1,8 @@
-ARCH=m328p
+#ARCH=m328p
+ARCH=m168p
 UART=/dev/tty.usbserial-1430
 RATE=115200
-HEX=.pio/build/ATmega328P/firmware.hex
+HEX=.pio/build/ATmega168P/firmware.hex
 
 init:
 	git submodule update --init --recursive
@@ -31,7 +32,7 @@ direct:
 	avrdude -c arduino -p $(ARCH) -P $(UART) -U flash:w:$(HEX):i 
 
 usbasp:
-	avrdude -c usbasp -p $(ARCH) -P usb -U flash:w:$(HEX):i -FD
+	avrdude -c usbasp -p $(ARCH) -P usb -U flash:w:$(HEX):i -F
 
 info:
 	avrdude -c usbasp -p $(ARCH) -P usb -v
